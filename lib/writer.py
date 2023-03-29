@@ -10,7 +10,7 @@ class Writer(BaseModel):
         if entry.uri is None:
             self.print('- ' + entry.name)
         else:
-            self.print(f'- [{entry.name}]({entry.uri})')
+            self.print(f'- [{escape(entry.name)}]({escape(entry.uri)})')
 
         child_writer = Writer(indent=self.indent + 1)
         if entry.children is not None:
@@ -19,3 +19,7 @@ class Writer(BaseModel):
 
     def print(self, msg: str) -> None:
         print(('  ' * self.indent) + msg)
+
+
+def escape(original) -> str:
+    return original.replace('[', '\\[').replace(']', '\\]').replace('(', '\\(').replace(')', '\\)')
