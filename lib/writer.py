@@ -21,5 +21,5 @@ class Writer(BaseModel):
         print(('  ' * self.indent) + msg)
 
 
-def escape(original) -> str:
+def escape(original: str) -> str:
     return original.replace('[', '\\[').replace(']', '\\]').replace('(', '\\(').replace(')', '\\)')
